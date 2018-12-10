@@ -10,20 +10,6 @@ namespace ModisAPI.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-
-        //[StringLength(40, ErrorMessage = "Name cannot be longer than 40 characters.")]
         public string Cognome { get; set; }
-
-        //private string _soprannome;
-        //public string GetSoprannome()
-        //{
-        //    return _soprannome;
-        //}
-
-        //public void SetSoprannome(string value)
-        //{
-        //    _soprannome = value;
-        //}
-
     }
 }
