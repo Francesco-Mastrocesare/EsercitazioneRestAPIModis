@@ -19,9 +19,9 @@ namespace ModisAPI.Models
                 .HasKey(sc => new { sc.StudenteId, sc.CorsoId });
 
             modelBuilder.Entity<StudenteCorso>()
-            .HasOne(bc => bc.Studente)
-            .WithMany(b => b.StudenteCorsi)
-            .HasForeignKey(bc => bc.StudenteId);
+                .HasOne(bc => bc.Studente)
+                .WithMany(b => b.StudenteCorsi)
+                .HasForeignKey(bc => bc.StudenteId);
 
             modelBuilder.Entity<StudenteCorso>()
                 .HasOne(bc => bc.Corso)
