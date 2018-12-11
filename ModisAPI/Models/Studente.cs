@@ -13,5 +13,4 @@ namespace ModisAPI.Models
         public string Cognome { get; set; }
         public IList<StudenteCorso> StudenteCorsi { get; set; }
     }
-    //prova
 }
