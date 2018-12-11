@@ -24,10 +24,22 @@ namespace ModisAPI.WorkerServices
             //oppure -> db.Studenti.Find(id);
             return db.Studenti.Where(x => x.Id == id).FirstOrDefault();
         }
+        
+        public void CreaStudente(Studente studente)
+        {
+            db.Studenti.Add(studente);
+            db.SaveChanges();
+        }
+
     }
 
     public class WorkerServiceOracleDb : IWorkerServiceStudenti
     {
+        public void CreaStudente(Studente studente)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Studente> RestituisciListaStudenti()
         {
             throw new NotImplementedException();
@@ -41,6 +53,11 @@ namespace ModisAPI.WorkerServices
 
     public class WorkerServiceStudenti : IWorkerServiceStudenti
     {
+        public void CreaStudente(Studente studente)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Studente> RestituisciListaStudenti()
         {
             var studente1 = new Studente { Id = 1, Cognome = "Mario", Nome = "Rossi" };
