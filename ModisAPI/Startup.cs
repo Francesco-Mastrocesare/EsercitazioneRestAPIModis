@@ -27,7 +27,7 @@ namespace ModisAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IWorkerServiceStudenti,WorkerServiceStudenti>();
+            services.AddScoped<IWorkerServiceStudenti, WorkerServiceSQLServerDB>();
 
         }
 
