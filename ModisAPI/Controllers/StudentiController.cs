@@ -36,8 +36,9 @@ namespace ModisAPI.Controllers
 
         // POST: api/Studenti
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(Studente studente)
         {
+            worker.CreaStudente(studente);
         }
 
         // PUT: api/Studenti/5
