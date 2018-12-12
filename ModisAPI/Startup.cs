@@ -28,6 +28,11 @@ namespace ModisAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IWorkerServiceStudenti, WorkerServiceSQLServerDB>();
+            services.AddSwaggerGen(c =>
+                        c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info {
+                        Title = "Modis API",
+                        Version = "v1"})
+                    );
 
         }
 
@@ -45,6 +50,13 @@ namespace ModisAPI
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+
+            app.UseSwaggerUI( 
+                c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+                });
         }
     }
 }
