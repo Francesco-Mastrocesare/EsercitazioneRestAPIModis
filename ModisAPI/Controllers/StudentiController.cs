@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModisAPI.Models;
 using ModisAPI.WorkerServices;
+using ModisAPI.ViewModels;
 
 namespace ModisAPI.Controllers
 {
@@ -22,14 +23,14 @@ namespace ModisAPI.Controllers
 
         // GET: api/Studenti
         [HttpGet]
-        public IEnumerable<Studente> Get()
+        public IEnumerable<ViewModelStudente> Get()
         {
             return worker.RestituisciListaStudenti();
         }
 
         // GET: api/Studenti/5
         [HttpGet("{id}", Name = "Get")]
-        public Studente Get(int id)
+        public List<ViewModelStudente> Get(int id)
         {
             return worker.RestituisciStudente(id);
         }

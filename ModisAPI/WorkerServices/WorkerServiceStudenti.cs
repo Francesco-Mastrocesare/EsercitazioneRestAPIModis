@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ModisAPI.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace ModisAPI.WorkerServices
 {
@@ -14,15 +16,43 @@ namespace ModisAPI.WorkerServices
             db = new ModisContext();
         }
 
-        public List<Studente> RestituisciListaStudenti()
+        public List<ViewModelStudente> RestituisciListaStudenti()
         {
-            return db.Studenti.ToList();
+            return db.Studenti.Include("Corsi").
+                Select(y => new ViewModelStudente
+                {
+                    Id = y.Id,
+                    NomeCompleto = y.Nome + " " + y.Cognome,
+                    Corsi = y.StudenteCorsi.Select(
+                        z => new Corso {
+                            CorsoId = z.Corso.CorsoId,
+                            DataInizio = z.Corso.DataInizio,
+                            Livello = z.Corso.Livello,
+                            NumeroMassimoPartecipanti = z.Corso.NumeroMassimoPartecipanti,
+                            DurataInOre = z.Corso.DurataInOre,
+                            Nome = z.Corso.Nome
+                        }).ToList()
+                }).ToList();
         }
 
-        public Studente RestituisciStudente(int id)
+        public List<ViewModelStudente> RestituisciStudente(int id)
         {
             //oppure -> db.Studenti.Find(id);
-            return db.Studenti.Where(x => x.Id == id).FirstOrDefault();
+            return db.Studenti.Where(x => x.Id == id).Include("Corsi").
+                Select(y => new ViewModelStudente
+                {
+                    Id = y.Id,
+                    NomeCompleto = y.Nome + " " + y.Cognome,
+                    Corsi = y.StudenteCorsi.Select(
+                        z => new Corso {
+                            CorsoId = z.Corso.CorsoId,
+                            DataInizio = z.Corso.DataInizio,
+                            Livello = z.Corso.Livello,
+                            NumeroMassimoPartecipanti = z.Corso.NumeroMassimoPartecipanti,
+                            DurataInOre = z.Corso.DurataInOre,
+                            Nome = z.Corso.Nome
+                        }).ToList()
+                }).ToList();
         }
 
         public void CreaStudente(Studente studente)
