@@ -45,8 +45,13 @@ namespace ModisAPI.WorkerServices
 
         public void CancellaStudente(int id)
         {
-            db.Studenti.Remove(db.Studenti.Find(id));
-            db.SaveChanges();
+            var studente = db.Studenti.Find(id);
+            if (studente != null)
+            {
+                db.Entry(studente).State = 
+                    Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
     }
 }
