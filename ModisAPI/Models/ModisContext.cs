@@ -11,7 +11,6 @@ namespace ModisAPI.Models
 
         public ModisContext(DbContextOptions<ModisContext> options) : base(options)
         {
-
         }
 
         public DbSet<Studente> Studenti { get; set; }
