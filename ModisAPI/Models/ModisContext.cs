@@ -8,6 +8,12 @@ namespace ModisAPI.Models
 {
     public class ModisContext : DbContext
     {
+
+        public ModisContext(DbContextOptions<ModisContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<Studente> Studenti { get; set; }
         public DbSet<Corso> Corsi { get; set; }
         public DbSet<StudenteCorso> StudenteCorsi { get; set; }
@@ -28,13 +34,6 @@ namespace ModisAPI.Models
                 .WithMany(c => c.StudenteCorsi)
                 .HasForeignKey(bc => bc.CorsoId);
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // crea un server locale con nome modisDB 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=ModisDB2;" +
-                              "Trusted_Connection=True;ConnectRetryCount=0";
-
-            optionsBuilder.UseSqlServer(connection);
-        }
+        
     }
 }
