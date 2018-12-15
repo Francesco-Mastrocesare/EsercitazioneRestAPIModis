@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModisAPI.Models;
 
 namespace ModisAPI.Migrations
 {
     [DbContext(typeof(ModisContext))]
-    partial class ModisContextModelSnapshot : ModelSnapshot
+    [Migration("20181215144051_Nuove tabelle corsi ed esami")]
+    partial class Nuovetabellecorsiedesami
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

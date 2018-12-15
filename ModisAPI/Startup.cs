@@ -32,6 +32,7 @@ namespace ModisAPI
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IWorkerServiceStudenti, WorkerServiceSQLServerDB>();
+            services.AddScoped<IWorkerServiceCorso, WorkerServiceSQLServerDbCorsi>();
 
             services.AddDbContext<ModisContext>(opzioni =>
                 opzioni.UseSqlServer(connectionString));
