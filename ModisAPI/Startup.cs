@@ -37,6 +37,13 @@ namespace ModisAPI
             services.AddDbContext<ModisContext>(opzioni =>
                 opzioni.UseSqlServer(connectionString));
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddSwaggerGen(c =>
                         c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info {
                         Title = "Modis API",
@@ -58,6 +65,7 @@ namespace ModisAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
             app.UseMvc();
             app.UseSwagger();
 
